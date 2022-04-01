@@ -1,0 +1,9 @@
+.element__btn_active {
+    background-image: url(../../../../images/like.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    height: 20px;
+    transition: .3s ease-in-out;
+    width: 20px;
+  }

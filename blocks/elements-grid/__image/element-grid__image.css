@@ -1,0 +1,9 @@
+.element-grid__image {
+    width: 100%;
+    max-width: 282px;
+    height: 282px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+  }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Жак-Ив Кусто</title>
+</head>
+<body>
+    <div class="page">
+        <!--блок header-->
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        <main class="content">
+            <!--блок profile-->
+            <section class="profile">
+                <div class="profile__container">
+                    <div class="profile__avatar">
+                        <img src="./images/photo-Jak-iv kusto.png" class="profile__image" alt="фото путешественника">
+                    </div>
+                    <div class="profile__info">
+                        <div class="profile__content">
+                            <h1 class="profile__title">Жак-Ив Кусто</h1>
+                            <p class="profile__subtitle">Исследователь океана</p>
+                        </div>
+                        <button class="profile__edit-button" title="Редактировать данные"></button>
+                    </div>
+                </div>
+                <button class="profile__add-button" title="Добавить данные"></button>
+            </section>
+            <!--блок elements-->
+            <section class="elements-grid">
+                <ul class="elements-grid__cards">
+                    <li class="element-grid__card">
+                        <img src="./images/photo-karach-cher.png" class="element-grid__image" alt="Карачаевск">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Карачаевск</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="element-grid__card">
+                        <img src="./images/photo-mountain.png" class="element-grid__image" alt="гора Эльбрус">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Гора Эльбрус</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="element-grid__card">
+                        <img src="./images/photo-dombay.png" class="element-grid__image" alt="Домбай">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Домбай</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="element-grid__card">
+                        <img src="./images/photo-karach-cher.png" class="element-grid__image" alt="Карачаевск">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Карачаевск</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="element-grid__card">
+                        <img src="./images/photo-dombay.png" class="element-grid__image" alt="Домбай">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Гора Эльбрус</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="element-grid__card">
+                        <img src="./images/photo-mountain.png" class="element-grid__image" alt="гора Эльбрус">
+                        <div class="element__description">
+                            <h3 class="element-grid__location">Домбай</h3>
+                            <div class="element__likes">
+                                <button type="button" class="element__btn element__btn_active  element__btn_click"
+                                    title="Нравится"></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <!--блок footer-->
+        <footer class="footer">
+            <p class="footer__copyright">© 2022. Зернина Валерия</p>
+        </footer>
+        <!-- всплывающее окно редактирования данных профиля -->
+        <div class="popup">
+            <div class="popup__container popup_opened">
+                <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
+                <form class="popup__form" name="popupForm" novalidate>
+                    <h3 class="popup__title">Редактировать профиль</h3>
+                    <input class="popup__input popup__input_name" type="text" name="UserName" id="userName"
+                        placeholder="Имя" required>
+                    <input class="popup__input popup__input_data" type="text" name="UserAbout" id="userAbout"
+                        placeholder="О себе" required>
+                    <button type="submit" class="popup__btn-save" title="Сохранить">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../mesto/scripts/index.js"></script>
+</body>
+</html>
