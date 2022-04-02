@@ -1,4 +1,4 @@
-.element__btn {
+.elements__btn {
     cursor: pointer;
     margin: 0;
     background-color: transparent;
@@ -11,7 +11,7 @@
     width: 22px;
   }
   
-  .element__btn:hover {
+  .elements__btn:hover {
     cursor: pointer;
     opacity: 0.8;
   }
