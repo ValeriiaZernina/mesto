@@ -10,6 +10,10 @@
   background-position: 50%;
   background-repeat: no-repeat;
   transition: opacity .3s ease;
+  align-self: center;
+  margin-left: 18px;
+  margin-top: 5px;
+  display: flex;
 }
 
 .profile__edit-button:hover {
@@ -18,8 +22,10 @@
 
 @media screen and (max-width: 569px) {
   .profile__edit-button {
-    margin-left: 7px;
+    margin-left: 10px;
     width: 18px;
     height: 18px;
+    margin-top: 10px;
+    align-self: baseline;
   }
 }
