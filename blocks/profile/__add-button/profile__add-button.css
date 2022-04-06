@@ -6,7 +6,7 @@
   border-radius: 2px;
   cursor: pointer;
   padding: 0;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
   background-image: url(../../../images/add-button.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -15,11 +15,6 @@
 }
 
 .profile__add-button:hover {
-  border: 2px solid #FFFFFF;
-  opacity: 0.6;
-}
-
-.profile__add-button:focus {
   opacity: 0.6;
 }
 

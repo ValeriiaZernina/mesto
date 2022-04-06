@@ -7,13 +7,18 @@
     color: #FFFFFF;
     width: 100%;
     max-width: 358px;
-    margin-top: 17px;
+    margin-top: 47px;
     text-align: center;
     background-color: #000000;
     border-radius: 2px;
     border: none;
     margin-bottom: 36px;
     min-height: 50px;
+    cursor: pointer;
+  }
+
+  .popup__btn-save:hover {
+    opacity: 0.8;
   }
   
   @media screen and (max-width: 767px) {

@@ -23,7 +23,7 @@
 
 ### Ссылка на итоговый проет, размещенный на GitHub Pages
 
-* [Ссылка на проект](https://github.com/ValeriiaZernina/mesto.git)
+* [Ссылка на проект](https://valeriiazernina.github.io/mesto/)
 
 ### При использовании проекта:
 

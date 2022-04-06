@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Жак-Ив Кусто</title>
 </head>
+
 <body>
     <div class="page">
         <!--блок header-->
@@ -24,10 +26,11 @@
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
                             <p class="profile__subtitle">Исследователь океана</p>
                         </div>
-                        <button class="profile__edit-button" title="Редактировать данные"></button>
+                        <button class="profile__edit-button" type="button" aria-label="Edit"
+                            title="Редактировать данные"></button>
                     </div>
                 </div>
-                <button class="profile__add-button" title="Добавить данные"></button>
+                <button class="profile__add-button" type="button" aria-label="Add" title="Добавить данные"></button>
             </section>
             <!--блок elements-->
             <section class="elements">
@@ -35,61 +38,43 @@
                     <li class="elements__card">
                         <img src="./images/photo-karach-cher.png" class="elements__image" alt="Карачаевск">
                         <div class="elements__description">
-                            <h3 class="elements__location">Карачаевск</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Карачаевск</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                     <li class="elements__card">
                         <img src="./images/photo-mountain.png" class="elements__image" alt="гора Эльбрус">
                         <div class="elements__description">
-                            <h3 class="elements__location">Гора Эльбрус</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Гора Эльбрус</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                     <li class="elements__card">
                         <img src="./images/photo-dombay.png" class="elements__image" alt="Домбай">
                         <div class="elements__description">
-                            <h3 class="elements__location">Домбай</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Домбай</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                     <li class="elements__card">
                         <img src="./images/photo-karach-cher.png" class="elements__image" alt="Карачаевск">
                         <div class="elements__description">
-                            <h3 class="elements__location">Карачаевск</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Карачаевск</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                     <li class="elements__card">
                         <img src="./images/photo-dombay.png" class="elements__image" alt="Домбай">
                         <div class="elements__description">
-                            <h3 class="elements__location">Гора Эльбрус</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Гора Эльбрус</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                     <li class="elements__card">
                         <img src="./images/photo-mountain.png" class="elements__image" alt="гора Эльбрус">
                         <div class="elements__description">
-                            <h3 class="elements__location">Домбай</h3>
-                            <div class="elements__likes">
-                                <button type="button" class="elements__btn elements__btn_active  elements__btn_click"
-                                    title="Нравится"></button>
-                            </div>
+                            <h2 class="elements__location">Домбай</h2>
+                                <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
                         </div>
                     </li>
                 </ul>
@@ -102,18 +87,19 @@
         <!-- всплывающее окно редактирования данных профиля -->
         <div class="popup">
             <div class="popup__container">
-                <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
-                <form class="popup__form" name="popupForm" novalidate>
-                    <h3 class="popup__title">Редактировать профиль</h3>
-                    <input class="popup__input popup__input_name" type="text" name="UserName" id="userName"
-                        placeholder="Имя" required>
-                    <input class="popup__input popup__input_data" type="text" name="UserAbout" id="userAbout"
-                        placeholder="О себе" required>
-                    <button type="submit" class="popup__btn-save" title="Сохранить">Сохранить</button>
-                </form>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                    <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
+                    <form class="popup__form" name="popupForm" novalidate>
+                        <input class="popup__input popup__input_enter_name" type="text" name="UserName" id="userName"
+                            placeholder="Имя" required>
+                        <input class="popup__input popup__input_enter_data" type="text" name="UserAbout" id="userAbout"
+                            placeholder="О себе" required>
+                        <button type="submit" class="popup__btn-save" title="Сохранить">Сохранить</button>
+                    </form>
             </div>
         </div>
     </div>
-    <script src="../mesto/scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
+
 </html>

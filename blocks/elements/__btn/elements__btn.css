@@ -1,8 +1,12 @@
 .elements__btn {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
     margin: 0;
     background-color: transparent;
-    background-image: url(//.//.//./images/like-click.svg);
+    background-image: url(../../../images/like.svg);
     border: none;
     height: 19px;
     outline: none;
@@ -10,8 +14,7 @@
     transition: .2s;
     width: 22px;
   }
-  
   .elements__btn:hover {
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.5;
   }
