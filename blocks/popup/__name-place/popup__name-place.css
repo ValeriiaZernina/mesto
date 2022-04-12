@@ -5,5 +5,9 @@
   font-size: 12px;
   line-height: 15px;
   color: #ffffff;
+  max-width: 75vw;
   margin-top: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

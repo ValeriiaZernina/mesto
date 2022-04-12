@@ -11,5 +11,5 @@
     display: flex;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: visibility .7s ease-out,opacity .7s ease-out;
   }
