@@ -27,50 +27,9 @@
                 <button class="profile__add-button" type="button" aria-label="Add" title="Добавить данные"></button>
             </section>
             <!--блок elements-->
+
             <section class="elements">
                 <ul class="elements__cards">
-                    <li class="elements__card">
-                        <img src="./images/photo-karach-cher.png" class="elements__image" alt="Карачаевск">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Карачаевск</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img src="./images/photo-mountain.png" class="elements__image" alt="гора Эльбрус">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Гора Эльбрус</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img src="./images/photo-dombay.png" class="elements__image" alt="Домбай">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Домбай</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img src="./images/photo-karach-cher.png" class="elements__image" alt="Карачаевск">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Карачаевск</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img src="./images/photo-dombay.png" class="elements__image" alt="Домбай">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Гора Эльбрус</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="elements__card">
-                        <img src="./images/photo-mountain.png" class="elements__image" alt="гора Эльбрус">
-                        <div class="elements__description">
-                            <h2 class="elements__location">Домбай</h2>
-                            <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
-                        </div>
-                    </li>
                 </ul>
             </section>
         </main>
@@ -79,7 +38,7 @@
             <p class="footer__copyright">© 2022. Зернина Валерия</p>
         </footer>
         <!-- всплывающее окно редактирования данных профиля -->
-        <div class="popup">
+        <div class="popup popup_cards-edit">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
@@ -92,6 +51,37 @@
                 </form>
             </div>
         </div>
+        <!-- всплывающее окно добавления картинки -->
+        <div class="popup popup_cards-add">
+            <div class="popup__container">
+                <h2 class="popup__title">Новое место</h2>
+                <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
+                <form class="popup__form" name="popupForm" novalidate>
+                    <input class="popup__input popup__input_enter_place" type="text" name="InputPlace" id="inputPlace"
+                        placeholder="Название" required>
+                    <input class="popup__input popup__input_enter_link" type="text" name="InputLink" id="inputLink"
+                        placeholder="Ссылка на картинку" required>
+                    <button type="submit" class="popup__btn-save" title="Создать">Создать</button>
+                </form>
+            </div>
+        </div>
+        <!-- всплывающее окно просмотра картинки -->
+        <div class="popup popup_image">
+            <div class="popup__container popup__container_image">
+                <button type="button" class="popup__btn-close" title="Закрыть картинку"></button>
+                <img class="popup__pic" src="/" alt="/" />
+                <div class="popup__name-place"></div>
+            </div>
+        </div>
+        <template class="elements__template">
+            <li class="elements__card">
+                <button type="button" class="elements__trash-icon" aria-label="Trash" title="Удалить"></button>
+                <img class="elements__image">
+                <div class="elements__description">
+                    <h2 class="elements__location"></h2>
+                    <button type="button" class="elements__btn" aria-label="Like" title="Нравится"></button>
+                </div>
+        </template>
     </div>
     <script src="./scripts/index.js"></script>
 </body>
