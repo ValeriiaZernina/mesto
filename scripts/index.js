@@ -83,10 +83,14 @@ const cardsContainer = document.querySelector('.elements__cards');
 const template = document.querySelector('.elements__template');
 
 function addCardsGallery() {
-    cardsGallery.forEach(addElement);
+    cardsGallery.forEach(item => renderCard(createElement(item)));
 }
 
-function addElement(item) {
+function renderCard(card) {
+    cardsContainer.prepend(card);
+}
+
+function createElement(item) {
     const cardsElement = template.content.cloneNode(true);
     const locationCards = cardsElement.querySelector(".elements__location");
     const imageCards = cardsElement.querySelector(".elements__image");
@@ -105,7 +109,7 @@ function addElement(item) {
         openPopup(modalWindowViewImage);
     });
 
-    cardsContainer.prepend(cardsElement);
+    return cardsElement;
 }
 
 modalCloseBtnImage.addEventListener('click', function() {
@@ -123,10 +127,11 @@ function handleAddLike(evt) {
 // Добавление картинки
 function handleAddImage(evt) {
     evt.preventDefault();
-    addElement({
+    const card = createElement({
         name: placeInput.value,
         link: linkInput.value,
     });
+    renderCard(card);
     closePopup(modalWindowAddedCard);
 }
 formElementAdded.addEventListener("submit", handleAddImage);
