@@ -45,6 +45,21 @@ function formSubmitHandler(evt) {
     closePopup(modalWindow);
 }
 profileForm.addEventListener('submit', formSubmitHandler);
+
+function handleEscClose(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(modalWindow);
+    }
+} 
+document.addEventListener('keydown', handleEscClose);
+
+function onOverlayClick(evt) {
+    if (evt.target === evt.currentTarget) {
+        closePopup(modalWindow);
+    }
+}
+modalWindow.addEventListener('click', onOverlayClick);
+
 // Всплывающее окно добавления карточки
 
 formAddCard.addEventListener('click', function() {
@@ -59,6 +74,23 @@ function formSubmitHandlerAdded(evt) {
     closePopup(modalWindowAddedCard);
 }
 formElementAdded.addEventListener('submit', formSubmitHandlerAdded);
+
+
+function handleEscCloseAdded(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(modalWindowAddedCard);
+    }
+} 
+document.addEventListener('keydown', handleEscCloseAdded);
+
+
+function onOverlayClickAdded(evt) {
+    if (evt.target === evt.currentTarget) {
+        closePopup(modalWindowAddedCard);
+    }
+}
+modalWindowAddedCard.addEventListener('click', onOverlayClickAdded);
+
 // Карточки
 const cardsGallery = [{
     name: "Карачаевск",
@@ -115,6 +147,21 @@ function createElement(item) {
 modalCloseBtnImage.addEventListener('click', function() {
     closePopup(modalWindowViewImage);
 });
+
+function handleEscCloseImage(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(modalWindowViewImage);
+    }
+} 
+document.addEventListener('keydown', handleEscCloseImage);
+
+function onOverlayClickImage(evt) {
+    if (evt.target === evt.currentTarget) {
+        closePopup(modalWindowViewImage);
+    }
+}
+modalWindowViewImage.addEventListener('click', onOverlayClickImage);
+
 //  Удаление карточки
 function handleRemoveCard(evt) {
     const deleteCard = evt.target.closest('.elements__card');
@@ -136,3 +183,4 @@ function handleAddImage(evt) {
 }
 formElementAdded.addEventListener("submit", handleAddImage);
 addCardsGallery();
+
