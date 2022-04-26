@@ -9,6 +9,7 @@
     line-height: 15px;
     color: #FF0000;
     display: block;
+    /* position: absolute; */
     margin: 0 auto;
     margin-bottom: 5px; 
 }
