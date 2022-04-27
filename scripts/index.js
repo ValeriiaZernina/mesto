@@ -17,13 +17,12 @@ const popupViewImage = document.querySelector(".popup__pic");
 const popupNamePlace = document.querySelector(".popup__name-place");
 const modalCloseBtnImage = modalWindowViewImage.querySelector('.popup__btn-close');
 
-
 function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+function closePopup() {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
 }
 
 // Всплывающее окно редактирования профиля
@@ -35,30 +34,32 @@ function openProfileForm() {
 
 formEditProfile.addEventListener('click', openProfileForm);
 modalCloseBtn.addEventListener('click', function() {
-    closePopup(modalWindow);
+    closePopup();
 });
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = jobInput.value;
-    closePopup(modalWindow);
+    closePopup();
 }
 profileForm.addEventListener('submit', formSubmitHandler);
 
 function handleEscClose(evt) {
     if (evt.key === 'Escape') {
-        closePopup(modalWindow);
+        closePopup();
     }
 } 
 document.addEventListener('keydown', handleEscClose);
 
 function onOverlayClick(evt) {
     if (evt.target === evt.currentTarget) {
-        closePopup(modalWindow);
+        closePopup();
     }
 }
 modalWindow.addEventListener('click', onOverlayClick);
+modalWindowAddedCard.addEventListener('click', onOverlayClick);
+modalWindowViewImage.addEventListener('click', onOverlayClick);
 
 // Всплывающее окно добавления карточки
 
@@ -75,21 +76,6 @@ function formSubmitHandlerAdded(evt) {
 }
 formElementAdded.addEventListener('submit', formSubmitHandlerAdded);
 
-
-function handleEscCloseAdded(evt) {
-    if (evt.key === 'Escape') {
-        closePopup(modalWindowAddedCard);
-    }
-} 
-document.addEventListener('keydown', handleEscCloseAdded);
-
-
-function onOverlayClickAdded(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(modalWindowAddedCard);
-    }
-}
-modalWindowAddedCard.addEventListener('click', onOverlayClickAdded);
 
 // Карточки
 const cardsGallery = [{
@@ -147,20 +133,6 @@ function createElement(item) {
 modalCloseBtnImage.addEventListener('click', function() {
     closePopup(modalWindowViewImage);
 });
-
-function handleEscCloseImage(evt) {
-    if (evt.key === 'Escape') {
-        closePopup(modalWindowViewImage);
-    }
-} 
-document.addEventListener('keydown', handleEscCloseImage);
-
-function onOverlayClickImage(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(modalWindowViewImage);
-    }
-}
-modalWindowViewImage.addEventListener('click', onOverlayClickImage);
 
 //  Удаление карточки
 function handleRemoveCard(evt) {
