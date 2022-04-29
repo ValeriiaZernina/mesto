@@ -1,3 +1,4 @@
+// переменные каждого popup окна
 const formEditProfile = document.querySelector('.profile__edit-button');
 const formAddCard = document.querySelector('.profile__add-button');
 const modalWindow = document.querySelector('.popup');
@@ -19,6 +20,7 @@ const modalCloseBtnImage = modalWindowViewImage.querySelector('.popup__btn-close
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    resetFormValidation(popup);
 }
 
 function closePopup() {
@@ -49,7 +51,7 @@ function handleEscClose(evt) {
     if (evt.key === 'Escape') {
         closePopup();
     }
-} 
+}
 document.addEventListener('keydown', handleEscClose);
 
 function onOverlayClick(evt) {
@@ -64,6 +66,7 @@ modalWindowViewImage.addEventListener('click', onOverlayClick);
 // Всплывающее окно добавления карточки
 
 formAddCard.addEventListener('click', function() {
+    formElementAdded.reset();
     openPopup(modalWindowAddedCard);
 });
 modalCloseBtnAdded.addEventListener('click', function() {
@@ -126,7 +129,6 @@ function createElement(item) {
         popupNamePlace.textContent = el.getAttribute("alt");
         openPopup(modalWindowViewImage);
     });
-
     return cardsElement;
 }
 
@@ -155,4 +157,3 @@ function handleAddImage(evt) {
 }
 formElementAdded.addEventListener("submit", handleAddImage);
 addCardsGallery();
-

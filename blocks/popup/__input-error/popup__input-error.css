@@ -9,12 +9,13 @@
     color: #FF0000;
     display: block;
     margin: 0 auto;
-    margin-bottom: 5px; 
-}
-@media screen and (max-width: 480px) {
+    margin-bottom: 5px;
+  }
+  
+  @media screen and (max-width: 480px) {
     .popup__input-error {
-        height: 20px;
-        font-size: 9px;
-        line-height: 10px;
-}
-}
+      height: 20px;
+      font-size: 9px;
+      line-height: 10px;
+    }
+  }
