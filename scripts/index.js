@@ -19,45 +19,45 @@ const popupNamePlace = document.querySelector(".popup__name-place");
 const modalCloseBtnImage = modalWindowViewImage.querySelector('.popup__btn-close');
 
 function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    resetFormValidation(popup);
+  popup.classList.add('popup_opened');
+  resetFormValidation(popup, CONFIG);
 }
 
 function closePopup() {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
+  document.querySelector('.popup_opened').classList.remove('popup_opened');
 }
 
 // Всплывающее окно редактирования профиля
 function openProfileForm() {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileInfo.textContent;
-    openPopup(modalWindow);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileInfo.textContent;
+  openPopup(modalWindow);
 }
 
 formEditProfile.addEventListener('click', openProfileForm);
 modalCloseBtn.addEventListener('click', function() {
-    closePopup();
+  closePopup();
 });
 
 function formSubmitHandler(evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileInfo.textContent = jobInput.value;
-    closePopup();
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileInfo.textContent = jobInput.value;
+  closePopup();
 }
 profileForm.addEventListener('submit', formSubmitHandler);
 
 function handleEscClose(evt) {
-    if (evt.key === 'Escape') {
-        closePopup();
-    }
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
 }
 document.addEventListener('keydown', handleEscClose);
 
 function onOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup();
-    }
+  if (evt.target === evt.currentTarget) {
+    closePopup();
+  }
 }
 modalWindow.addEventListener('click', onOverlayClick);
 modalWindowAddedCard.addEventListener('click', onOverlayClick);
@@ -66,94 +66,94 @@ modalWindowViewImage.addEventListener('click', onOverlayClick);
 // Всплывающее окно добавления карточки
 
 formAddCard.addEventListener('click', function() {
-    formElementAdded.reset();
-    openPopup(modalWindowAddedCard);
+  formElementAdded.reset();
+  openPopup(modalWindowAddedCard);
 });
 modalCloseBtnAdded.addEventListener('click', function() {
-    closePopup(modalWindowAddedCard);
+  closePopup(modalWindowAddedCard);
 });
 
 function formSubmitHandlerAdded(evt) {
-    evt.preventDefault();
-    closePopup(modalWindowAddedCard);
+  evt.preventDefault();
+  closePopup(modalWindowAddedCard);
 }
 formElementAdded.addEventListener('submit', formSubmitHandlerAdded);
 
 
 // Карточки
 const cardsGallery = [{
-    name: "Карачаевск",
-    link: "./images/photo-karach-cher.png"
+  name: "Карачаевск",
+  link: "./images/photo-karach-cher.png"
 }, {
-    name: "Гора Эльбрус",
-    link: "./images/photo-mountain.png"
+  name: "Гора Эльбрус",
+  link: "./images/photo-mountain.png"
 }, {
-    name: "Домбай",
-    link: "./images/photo-dombay.png"
+  name: "Домбай",
+  link: "./images/photo-dombay.png"
 }, {
-    name: "Карачаевск",
-    link: "./images/photo-karach-cher.png"
+  name: "Карачаевск",
+  link: "./images/photo-karach-cher.png"
 }, {
-    name: "Гора Эльбрус",
-    link: "./images/photo-dombay.png"
+  name: "Гора Эльбрус",
+  link: "./images/photo-dombay.png"
 }, {
-    name: "Домбай",
-    link: "./images/photo-mountain.png"
+  name: "Домбай",
+  link: "./images/photo-mountain.png"
 }, ];
 const cardsContainer = document.querySelector('.elements__cards');
 const template = document.querySelector('.elements__template');
 
 function addCardsGallery() {
-    cardsGallery.forEach(item => renderCard(createElement(item)));
+  cardsGallery.forEach(item => renderCard(createElement(item)));
 }
 
 function renderCard(card) {
-    cardsContainer.prepend(card);
+  cardsContainer.prepend(card);
 }
 
 function createElement(item) {
-    const cardsElement = template.content.cloneNode(true);
-    const locationCards = cardsElement.querySelector(".elements__location");
-    const imageCards = cardsElement.querySelector(".elements__image");
-    const removeButton = cardsElement.querySelector(".elements__trash-icon");
-    const likeButton = cardsElement.querySelector(".elements__btn");
-    locationCards.textContent = item.name;
-    imageCards.alt = item.name;
-    imageCards.src = item.link;
-    likeButton.addEventListener('click', handleAddLike);
-    removeButton.addEventListener('click', handleRemoveCard);
-    imageCards.addEventListener("click", function(evt) {
-        const el = evt.target;
-        popupViewImage.src = el.getAttribute("src");
-        popupViewImage.alt = el.getAttribute("alt");
-        popupNamePlace.textContent = el.getAttribute("alt");
-        openPopup(modalWindowViewImage);
-    });
-    return cardsElement;
+  const cardsElement = template.content.cloneNode(true);
+  const locationCards = cardsElement.querySelector(".elements__location");
+  const imageCards = cardsElement.querySelector(".elements__image");
+  const removeButton = cardsElement.querySelector(".elements__trash-icon");
+  const likeButton = cardsElement.querySelector(".elements__btn");
+  locationCards.textContent = item.name;
+  imageCards.alt = item.name;
+  imageCards.src = item.link;
+  likeButton.addEventListener('click', handleAddLike);
+  removeButton.addEventListener('click', handleRemoveCard);
+  imageCards.addEventListener("click", function(evt) {
+    const el = evt.target;
+    popupViewImage.src = el.getAttribute("src");
+    popupViewImage.alt = el.getAttribute("alt");
+    popupNamePlace.textContent = el.getAttribute("alt");
+    openPopup(modalWindowViewImage);
+  });
+  return cardsElement;
 }
 
 modalCloseBtnImage.addEventListener('click', function() {
-    closePopup(modalWindowViewImage);
+  closePopup(modalWindowViewImage);
 });
 
 //  Удаление карточки
 function handleRemoveCard(evt) {
-    const deleteCard = evt.target.closest('.elements__card');
-    deleteCard.remove();
+  const deleteCard = evt.target.closest('.elements__card');
+  deleteCard.remove();
 }
 // Лайк
 function handleAddLike(evt) {
-    evt.target.classList.toggle('elements__btn_active');
+  evt.target.classList.toggle('elements__btn_active');
 }
 // Добавление картинки
 function handleAddImage(evt) {
-    evt.preventDefault();
-    const card = createElement({
-        name: placeInput.value,
-        link: linkInput.value,
-    });
-    renderCard(card);
-    closePopup(modalWindowAddedCard);
+  evt.preventDefault();
+  const card = createElement({
+    name: placeInput.value,
+    link: linkInput.value,
+  });
+  renderCard(card);
+  closePopup(modalWindowAddedCard);
 }
 formElementAdded.addEventListener("submit", handleAddImage);
 addCardsGallery();
