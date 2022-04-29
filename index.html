@@ -42,7 +42,7 @@
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
-                <form class="popup__form" name="popupForm" novalidate>
+                <form class="popup__form" name="popupEditProfile" novalidate>
                     <input class="popup__input popup__input_enter_name" type="text" name="UserName" value="" id="userName"
                         placeholder="Имя" minlength="2" maxlength="40" pattern="[А-ЯЁа-яёA-Za-z -]{1,40}" required>
                         <span id="userName-error" class="popup__input-error"></span>
@@ -58,7 +58,7 @@
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
                 <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
-                <form class="popup__form" name="popupForm" novalidate>
+                <form class="popup__form" name="popupAddElement" novalidate>
                     <input class="popup__input popup__input_enter_place" type="text" name="InputPlace" value="" id="inputPlace"
                         placeholder="Название" minlength="2" maxlength="30" required>
                         <span id="inputPlace-error" class="popup__input-error"></span>
@@ -88,6 +88,7 @@
             </li>
         </template>
     </div>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/validate.js"></script>
 </body>
