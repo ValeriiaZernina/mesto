@@ -80,8 +80,10 @@ function formSubmitHandlerAdded(evt) {
   evt.preventDefault();
   closePopup(popupAddedCard);
 }
-formElementAdded.addEventListener('submit', handleAddImage,
-  formSubmitHandlerAdded);
+
+formElementAdded.addEventListener('submit', () => {
+    handleAddImage();
+});
 
 // Карточки
 const cardsContainer = document.querySelector('.elements__cards');

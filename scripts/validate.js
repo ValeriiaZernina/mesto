@@ -13,7 +13,7 @@ function enableValidation(config) {
     const inputs = form.querySelectorAll(config.inputSelector);
 
     inputs.forEach((element) => {
-      element.addEventListener('change', (event) => handleFormInput(event,
+      element.addEventListener('input', (event) => handleFormInput(event,
         form, config))
     });
   }
