@@ -81,7 +81,6 @@ function handleAddImage(evt) {
   evt.preventDefault();
 
   createCard(placeInput.value, linkInput.value);
-
   closePopup(popupAddedCard);
 }
 formElementAdded.addEventListener('submit', handleAddImage);
