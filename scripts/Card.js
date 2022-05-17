@@ -28,18 +28,19 @@ export class Card {
 
     _delClickHandler = () => {
       this._element.remove();
+      this._element = null;
       }
 
 
     getView = () => {
       this._element = this._getTemplate();
+      const imageCard = this._element.querySelector(".elements__image"); 
+      imageCard.alt = this._name;;
+      imageCard.src = this._link;
       this._element.querySelector(".elements__location").textContent = this._name;
-      this._element.querySelector(".elements__image").alt = this._name;;
-      this._element.querySelector(".elements__image").src = this._link;
       const likeButton = this._element.querySelector(".elements__btn");
       likeButton.addEventListener('click', this._likeClickHandler);
       
-  // imageCards.addEventListener("click", openPopupHandler);
       this._element.querySelector(".elements__trash-icon").addEventListener('click', this._delClickHandler);
       this._element.querySelector(".elements__image").addEventListener('click', () => this._clickHandler(this._link, this._name));
 

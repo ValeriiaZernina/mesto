@@ -19,6 +19,7 @@ const placeInput = document.querySelector('.popup__input_enter_place');
 const linkInput = document.querySelector('.popup__input_enter_link');
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_type_profile-edit');
+const profileForm = document.querySelector('.popup__form'); 
 const nameInput = document.querySelector('.popup__input_enter_name');
 const jobInput = document.querySelector('.popup__input_enter_data');
 const profileName = document.querySelector('.profile__title');
@@ -56,7 +57,6 @@ function openPopupAddedCard(formValidator) {
   formValidator.reset();
 };
 
-
 function openProfileForm(formValidator) {
   nameInput.value = profileName.textContent;
   jobInput.value = profileInfo.textContent;
@@ -64,11 +64,23 @@ function openProfileForm(formValidator) {
   formValidator.reset();
 }
 
+function submitProfileForm(evt) { 
+  evt.preventDefault(); 
+    profileName.textContent = nameInput.value; 
+    profileInfo.textContent = jobInput.value; 
+    closePopup(); 
+  } 
+  profileForm.addEventListener('submit', submitProfileForm);
+  
+  function createCard(name, link) {
+    const card = new Card(name, link, '.elements__template', previewPicHandler);
+  cardsContainer.prepend(card.getView());
+  }
+
 function handleAddImage(evt) {
   evt.preventDefault();
 
-  const card = new Card(placeInput.value, linkInput.value, '.elements__template', previewPicHandler);
-  cardsContainer.prepend(card.getView());
+  createCard(placeInput.value, linkInput.value);
 
   closePopup(popupAddedCard);
 }
@@ -97,8 +109,7 @@ function closePopup() {
 }
 
 cardsGallery.forEach((item) => {
-  const card = new Card(item.name, item.link, '.elements__template', previewPicHandler);
-  cardsContainer.prepend(card.getView());
+  createCard(item.name, item.link);
 });
 
 function init() {
