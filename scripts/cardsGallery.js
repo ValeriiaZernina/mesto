@@ -1,4 +1,4 @@
-const cardsGallery = [{
+export const cardsGallery = [{
     name: "Карачаевск",
     link: "./images/photo-karach-cher.png"
   }, {
@@ -16,4 +16,4 @@ const cardsGallery = [{
   }, {
     name: "Домбай",
     link: "./images/photo-mountain.png"
-  }, ];
+  }, ]
