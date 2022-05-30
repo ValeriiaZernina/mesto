@@ -1,3 +1,4 @@
+import './pages/index.css';
 import {
   cardsGallery
 } from "./cardsGallery.js";
@@ -7,6 +8,10 @@ import {
 import {
   FormValidator
 } from "./FormValidator.js";
+import {
+  Section
+} from "./Section.js";
+
 
 const cardsContainer = document.querySelector('.elements__cards');
 const popupViewImage = document.querySelector(".popup__pic");
