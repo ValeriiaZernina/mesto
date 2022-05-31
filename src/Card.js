@@ -3,13 +3,13 @@ export class Card {
     _link;
     _querySelectorTemplate;
     _element;
-    _clickHandler;
+    _handleCardClick;
 
-    constructor(name, link, querySelectorTemplate, clickHandler) {
+    constructor(name, link, querySelectorTemplate, handleCardClick) {
       this._name = name;
       this._link = link;
       this._querySelectorTemplate = querySelectorTemplate;
-      this._clickHandler = clickHandler;
+      this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -31,7 +31,6 @@ export class Card {
       this._element = null;
       }
 
-
     getView = () => {
       this._element = this._getTemplate();
       const imageCard = this._element.querySelector(".elements__image"); 
@@ -42,8 +41,8 @@ export class Card {
       likeButton.addEventListener('click', this._likeClickHandler);
       
       this._element.querySelector(".elements__trash-icon").addEventListener('click', this._delClickHandler);
-      this._element.querySelector(".elements__image").addEventListener('click', () => this._clickHandler(this._link, this._name));
-
+      this._element.querySelector(".elements__image").addEventListener('click', () => this._handleCardClick({link: this._link, name: this._name}));
+    
       return this._element;
 
     }
