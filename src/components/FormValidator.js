@@ -37,7 +37,7 @@ export class FormValidator {
         this._toggleButton();
     }
 
-    reset() {
+    resetValidation() {
         this._inputList.forEach((element) => {
             this._hideInputError(element);
         });
