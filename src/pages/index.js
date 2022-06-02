@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import {
     cardsGallery
-} from "../components/cardsGallery.js";
+} from "../utils/cardsGallery.js";
 import {
     Card
 } from "../components/Card.js";
@@ -24,13 +24,19 @@ import {
     buttonOpenPopupElement,
     buttonOpenPopupProfile,
     CONFIG,
-} from "../components/utils/constants.js";
+} from "../utils/constants.js";
 
 function createCard(name, link) {
     const card = new Card(name, link, '.elements__template', handleCardClick);
     const cardElement = card.getView();
+    return cardElement;
+}
+
+function prependCard(name, link) {
+    const cardElement = createCard(name, link);
     cardList.addItem(cardElement);
 }
+
 
 const popupWithImage = new PopupWithImage(".popup_type_image-view");
 popupWithImage.setEventListeners();
@@ -42,7 +48,7 @@ const popupProfile = new PopupWithForm('.popup_type_profile-edit', handleProfile
 popupProfile.setEventListeners();
 
 function handleAddedFormSubmit(data) {
-    createCard(data.InputPlace, data.InputLink);
+    prependCard(data.InputPlace, data.InputLink);
     popupAddedCard.closePopup();
 }
 
@@ -60,7 +66,7 @@ function handleCardClick(item) {
 const cardList = new Section({
     items: cardsGallery,
     renderer: (item) => {
-        createCard(item.name, item.link);
+        prependCard(item.name, item.link);
     }
 }, '.elements__cards');
 
@@ -78,6 +84,11 @@ const initFormProfile = new FormValidator(document.querySelector('.popup_type_pr
 initFormProfile.enableValidation();
 
 buttonOpenPopupProfile.addEventListener('click', () => {
+    const user = userInfo.getUserInfo();
+    popupProfile.setInputValues({
+        UserName: user.profileName,
+        UserAbout: user.profileInfo
+    });
     popupProfile.openPopup();
     initFormProfile.resetValidation();
 });
