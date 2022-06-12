@@ -12,6 +12,7 @@
 @import url(../blocks/elements/__btn/_active/elements__btn_active.css);
 @import url(../blocks/elements/__trash-icon/elements__trash-icon.css);
 @import url(../blocks/elements/__location/elements__location.css);
+@import url(../blocks/elements/__counter/elements__counter.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);

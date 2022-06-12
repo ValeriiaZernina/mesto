@@ -1,4 +1,4 @@
-# Проектная работа 4-8
+# Проектная работа 
 ## Название: сервис "Mesto"
 
 ## Описание
@@ -43,6 +43,7 @@
 ### Ссылка на итоговый проет, размещенный на GitHub Pages
 
 * [Ссылка на проект](https://valeriiazernina.github.io/mesto/)
+* [Ссылка на сайт](https://valeriiazernina.github.io/mesto/index.html)
 
 ### При использовании проекта:
 
