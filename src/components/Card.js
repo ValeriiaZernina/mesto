@@ -4,13 +4,14 @@ export class Card {
     _querySelectorTemplate;
     _element;
     _handleCardClick;
+    _handleDeleteCardClick;
 
-    constructor(name, link, querySelectorTemplate, handleCardClick) {
+    constructor(name, link, querySelectorTemplate, handleCardClick, handleDeleteCardClick) {
         this._name = name;
         this._link = link;
         this._querySelectorTemplate = querySelectorTemplate;
         this._handleCardClick = handleCardClick;
-
+        this._handleDeleteCardClick = handleDeleteCardClick;
     }
 
     _getTemplate() {
@@ -27,10 +28,11 @@ export class Card {
         evt.target.classList.toggle('elements__btn_active');
     }
 
-    _delClickHandler = () => {
-        this._element.remove();
-        this._element = null;
-    }
+    // _delClickHandler = () => {
+    //     this._element.remove();
+    //     this._element = null;
+    // }
+
 
     _setEventListeners() {
         this._element.querySelector(".elements__btn").addEventListener('click', (evt) => {
@@ -38,7 +40,7 @@ export class Card {
         });
 
         this._element.querySelector(".elements__trash-icon").addEventListener('click', () => {
-            this._delClickHandler()
+            this._handleDeleteCardClick()
         });
 
         this._imageCard = this._element.querySelector(".elements__image")

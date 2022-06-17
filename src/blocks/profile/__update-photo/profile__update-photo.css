@@ -1,7 +1,8 @@
 .profile__update-photo {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  clip-path: circle(50%);
+  max-width: 120px;
+  max-height: 120px;
+  cursor: pointer;
 }
 
 .profile__update-photo:hover::after {
@@ -14,7 +15,6 @@
     content: url(../../../images/AvatarUpdate.svg);
     text-align: center;
     background: rgba(0, 0, 0, 0.8);
-    cursor: pointer;
   }
 
   @media screen and (max-width: 699px) {

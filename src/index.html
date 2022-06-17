@@ -17,7 +17,6 @@
             <!--блок profile-->
             <section class="profile">
                 <div class="profile__update-photo">
-                <div class="spinner"></div>
                 <img src="<%=require('./images/photo-Jak-iv-kusto.png')%>" class="profile__avatar" alt="фото путешественника">
             </div>
                 <div class="profile__info">
@@ -45,9 +44,9 @@
         <h2 class="popup__title">Обновить аватар</h2>
         <button type="button" class="popup__btn-close" title="Закрыть форму"></button>
         <form class="popup__form" name="popupUpdateAvatar" novalidate>
-            <input class="popup__input popup__input_enter_link" type="url" name="InputLink" value="" id="avatarLink"
+            <input class="popup__input popup__input_enter_link" type="url" name="AvatarLink" value="" id="avatarLink"
             placeholder="Ссылка на картинку аватара" required>
-            <span id="inputLink-error" class="popup__input-error"></span>
+            <span id="avatarLink-error" class="popup__input-error"></span>
         <button type="submit" class="popup__btn-save popup__btn-save_disabled" title="Сохранить">Сохранить</button>
         </form>
     </div>

@@ -13,6 +13,8 @@
     padding: 0;
     transition: .2s;
     width: 22px;
+    position: absolute;
+    right: 20px;
   }
   .elements__btn:hover {
     cursor: pointer;
