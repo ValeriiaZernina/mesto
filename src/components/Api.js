@@ -35,9 +35,9 @@ export class Api {
     //     }).then((res) => this._checkResStatus(res));
     //   }
 
-    // likeCard(id) {
-    //     return fetch(`https://mesto.${this._baseUrl}/cards/${_id}/likes`, {
-    //       method: "PUT",
+    // changeLikeCardStatus(cardId, like) {
+    //     return fetch(`https://mesto.${this._url}/cards/${cardId}/likes`, {
+    //       method: like ? "PUT" : "DELETE"
     //       headers: this._headers,
     //     })
     //     .then((res) => this._checkResStatus(res));

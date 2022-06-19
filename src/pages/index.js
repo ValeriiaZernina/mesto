@@ -95,11 +95,11 @@ function handleProfileFormSubmit(data) {
     popupProfile.closePopup();
 }
 
-function handleUpdateAvatar(avatar) {
+function handleUpdateAvatar(data) {
     popupUpdateAvatar.renderLoading(true);
     api
-    .patchAvatar(avatar)
-    .then((data) => {
+    .patchAvatar(data.AvatarLink)
+    .then(() => {
         userInfo.setAvatar(data.AvatarLink);
         popupUpdateAvatar.closePopup();
     })
