@@ -30,21 +30,21 @@ export class Card {
         return itemTemplateContent;
     }
 
-    _toogleLike (evt) {
+    _toogleLike(evt) {
         evt.target.classList.toggle('elements__btn_active');
     }
 
     getId() {
         return this._id;
-      }
+    }
 
-    remove () {
+    remove() {
         this._element.remove();
         this._element = null;
     }
 
-    chengeLikeCounter(counter){
-        this._likeCounter.textContent  = counter;
+    chengeLikeCounter(counter) {
+        this._likeCounter.textContent = counter;
     }
 
     _setEventListeners() {
@@ -72,10 +72,10 @@ export class Card {
         this._setEventListeners();
         if (!canEdit) {
             this._element.querySelector(".elements__trash-icon").remove();
-          }
+        }
         this._likeCounter = this._element.querySelector(".elements__counter");
         this._likeCounter.textContent = counter;
-        if(isLike){
+        if (isLike) {
             this._element.querySelector(".elements__btn").classList.toggle('elements__btn_active');
         }
         this._imageCard.alt = this._name;;

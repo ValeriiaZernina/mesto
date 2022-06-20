@@ -18,7 +18,7 @@ import {
     UserInfo
 } from "../components/UserInfo.js";
 import {
-PopupWithConfirmation
+    PopupWithConfirmation
 } from "../components/PopupWithConfirmation.js"
 import {
     buttonOpenPopupElement,
@@ -26,45 +26,45 @@ import {
     CONFIG,
     buttonOpenPopupUpdateAvatar,
 } from "../utils/constants.js";
-import { 
-    Api    
+import {
+    Api
 } from "../components/Api.js";
 
 const api = new Api({
     url: "nomoreparties.co/v1/cohort-43",
     headers: {
-      authorization: "4c628538-281e-4966-940f-27dfe004ed12",
-      "Content-Type": "application/json",
+        authorization: "4c628538-281e-4966-940f-27dfe004ed12",
+        "Content-Type": "application/json",
     },
-  });
+});
 
-  let cardList = null;
+let cardList = null;
 
-  Promise.all([api.getInitialUser(), api.getInitialCards()])
-  .then(([user, cards]) => {
-    userInfo.setUserData(user);
+Promise.all([api.getInitialUser(), api.getInitialCards()])
+    .then(([user, cards]) => {
+        userInfo.setUserData(user);
 
-    cardList = new Section({
-        items: cards,
-        renderer: (item) => {
-            const canEdit = item.owner._id === userInfo.getId();
-            const isLike = item.likes.some(item => item._id=== userInfo.getId());
-            const counter = item.likes.length;
-            prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
-        }
-    }, '.elements__cards');
-    
-    cardList.renderItems();
-})
- .catch((err) => alert(err));
+        cardList = new Section({
+            items: cards,
+            renderer: (item) => {
+                const canEdit = item.owner._id === userInfo.getId();
+                const isLike = item.likes.some(item => item._id === userInfo.getId());
+                const counter = item.likes.length;
+                prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
+            }
+        }, '.elements__cards');
+
+        cardList.renderItems();
+    })
+    .catch((err) => alert(err));
 
 function handleLikeClick(card, click) {
     api.changeLikeCardStatus(card.getId(), click)
-    .then((result) => {
-        const counter = result.likes.length;
-        card.chengeLikeCounter(counter);
-    })
-    .catch((err) => alert(err))
+        .then((result) => {
+            const counter = result.likes.length;
+            card.chengeLikeCounter(counter);
+        })
+        .catch((err) => alert(err))
 }
 
 function createCard(id, name, link, canEdit, counter, isLike) {
@@ -96,16 +96,16 @@ popupDeleteCard.setEventListeners();
 function handleAddedFormSubmit(data) {
     popupAddedCard.renderLoading(true);
     api
-    .addNewCard(data.InputPlace, data.InputLink)
-    .then((result) => {
-        prependCard(result._id, data.InputPlace, data.InputLink, true, 0, false);
-        popupAddedCard.closePopup();
-    })
-    .catch((err) => alert(err))
-    .finally(() => {
-        popupAddedCard.renderLoading(false)
-      });
-    
+        .addNewCard(data.InputPlace, data.InputLink)
+        .then((result) => {
+            prependCard(result._id, data.InputPlace, data.InputLink, true, 0, false);
+            popupAddedCard.closePopup();
+        })
+        .catch((err) => alert(err))
+        .finally(() => {
+            popupAddedCard.renderLoading(false)
+        });
+
 }
 
 function handleProfileFormSubmit(data) {
@@ -116,15 +116,15 @@ function handleProfileFormSubmit(data) {
 function handleUpdateAvatar(data) {
     popupUpdateAvatar.renderLoading(true);
     api
-    .patchAvatar(data.AvatarLink)
-    .then(() => {
-        userInfo.setAvatar(data.AvatarLink);
-        popupUpdateAvatar.closePopup();
-    })
-    .catch((err) => alert(err))
-    .finally(() => {
-        popupUpdateAvatar.renderLoading(false)
-      });
+        .patchAvatar(data.AvatarLink)
+        .then(() => {
+            userInfo.setAvatar(data.AvatarLink);
+            popupUpdateAvatar.closePopup();
+        })
+        .catch((err) => alert(err))
+        .finally(() => {
+            popupUpdateAvatar.renderLoading(false)
+        });
 }
 
 function handleDeleteCardClick(card) {
@@ -133,24 +133,23 @@ function handleDeleteCardClick(card) {
 
 function handleDeleteCard(card) {
     api
-    .deleteCard(card.getId())
-    .then(() => {
-        card.remove();
-        popupDeleteCard.closePopup();
-    })
-    .catch((err) => alert(err))
+        .deleteCard(card.getId())
+        .then(() => {
+            card.remove();
+            popupDeleteCard.closePopup();
+        })
+        .catch((err) => alert(err))
 }
 
 function handlerEditProfile(name, about) {
     popupProfile.renderLoading(true);
     api
-    .patchUser(name, about)
-    .then(() => {
-    })
-    .catch((err) => alert(err))
-    .finally(() => {
-    popupProfile.renderLoading(false);
-    })
+        .patchUser(name, about)
+        .then(() => {})
+        .catch((err) => alert(err))
+        .finally(() => {
+            popupProfile.renderLoading(false);
+        })
 }
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar', handlerEditProfile);

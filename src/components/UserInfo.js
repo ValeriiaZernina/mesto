@@ -16,7 +16,7 @@ export class UserInfo {
   }
 
   getId() {
-    return this._id;
+      return this._id;
   }
 
   setUserInfo(name, about) {
@@ -26,13 +26,13 @@ export class UserInfo {
   }
 
   setUserData(data) {
-    this._name.textContent = data.name;
-    this._info.textContent = data.about;
-    this._avatar.src = data.avatar;
-    this._id = data._id;
-}
+      this._name.textContent = data.name;
+      this._info.textContent = data.about;
+      this._avatar.src = data.avatar;
+      this._id = data._id;
+  }
 
   setAvatar(avatar) {
-    this._avatar.src = avatar;
-}
+      this._avatar.src = avatar;
+  }
 }
