@@ -9,7 +9,6 @@ export class Card {
     _handleDeleteCardClick;
     _handleLikeClick;
 
-
     constructor(id, name, link, querySelectorTemplate, handleCardClick, handleDeleteCardClick, handleLikeClick) {
         this._id = id;
         this._name = name;
@@ -30,7 +29,7 @@ export class Card {
         return itemTemplateContent;
     }
 
-    _toogleLike(evt) {
+    toogleLike(evt) {
         evt.target.classList.toggle('elements__btn_active');
     }
 
@@ -50,8 +49,7 @@ export class Card {
     _setEventListeners() {
         this._element.querySelector(".elements__btn").addEventListener('click', (evt) => {
             const like = !evt.target.classList.value.includes('elements__btn_active');
-            this._handleLikeClick(this, like)
-            this._toogleLike(evt);
+            this._handleLikeClick(this, like, evt);
         });
 
         this._element.querySelector(".elements__trash-icon").addEventListener('click', () => {

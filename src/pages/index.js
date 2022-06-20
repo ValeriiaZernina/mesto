@@ -38,31 +38,28 @@ const api = new Api({
     },
 });
 
-let cardList = null;
+const cardList = new Section({
+    renderer: (item) => {
+        const canEdit = item.owner._id === userInfo.getId();
+        const isLike = item.likes.some(item => item._id === userInfo.getId());
+        const counter = item.likes.length;
+        prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
+    }
+}, '.elements__cards');
 
 Promise.all([api.getInitialUser(), api.getInitialCards()])
     .then(([user, cards]) => {
         userInfo.setUserData(user);
-
-        cardList = new Section({
-            items: cards,
-            renderer: (item) => {
-                const canEdit = item.owner._id === userInfo.getId();
-                const isLike = item.likes.some(item => item._id === userInfo.getId());
-                const counter = item.likes.length;
-                prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
-            }
-        }, '.elements__cards');
-
-        cardList.renderItems();
+        cardList.renderItems(cards);
     })
     .catch((err) => alert(err));
 
-function handleLikeClick(card, click) {
+function handleLikeClick(card, click, evt) {
     api.changeLikeCardStatus(card.getId(), click)
         .then((result) => {
             const counter = result.likes.length;
             card.chengeLikeCounter(counter);
+            card.toogleLike(evt);
         })
         .catch((err) => alert(err))
 }
@@ -109,8 +106,7 @@ function handleAddedFormSubmit(data) {
 }
 
 function handleProfileFormSubmit(data) {
-    userInfo.setUserInfo(data.UserName, data.UserAbout);
-    popupProfile.closePopup();
+    userInfo.updateProfile(data.UserName, data.UserAbout);
 }
 
 function handleUpdateAvatar(data) {
@@ -145,7 +141,10 @@ function handlerEditProfile(name, about) {
     popupProfile.renderLoading(true);
     api
         .patchUser(name, about)
-        .then(() => {})
+        .then(() => {
+            userInfo.setUserInfo(name, about)
+            popupProfile.closePopup();
+        })
         .catch((err) => alert(err))
         .finally(() => {
             popupProfile.renderLoading(false);
