@@ -65,8 +65,8 @@ function handleLikeClick(card, click, evt) {
 }
 
 function createCard(id, name, link, canEdit, counter, isLike) {
-    const card = new Card(id, name, link, '.elements__template', handleCardClick, handleDeleteCardClick, handleLikeClick);
-    const cardElement = card.getView(counter, isLike, canEdit);
+    const card = new Card(id, name, link, counter, isLike, canEdit, '.elements__template', handleCardClick, handleDeleteCardClick, handleLikeClick);
+    const cardElement = card.getView();
     return cardElement;
 }
 
