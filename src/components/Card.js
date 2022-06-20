@@ -3,17 +3,21 @@ export class Card {
     _name;
     _link;
     _counter;
+    _isLike;
+    _canEdit;
     _querySelectorTemplate;
     _element;
     _handleCardClick;
     _handleDeleteCardClick;
     _handleLikeClick;
-
-
-    constructor(id, name, link, querySelectorTemplate, handleCardClick, handleDeleteCardClick, handleLikeClick) {
+   
+    constructor(id, name, link, counter, isLike, canEdit, querySelectorTemplate, handleCardClick, handleDeleteCardClick, handleLikeClick) {
         this._id = id;
         this._name = name;
         this._link = link;
+        this._counter = counter;
+        this._isLike = isLike;
+        this._canEdit = canEdit;
         this._querySelectorTemplate = querySelectorTemplate;
         this._handleCardClick = handleCardClick;
         this._handleDeleteCardClick = handleDeleteCardClick;
@@ -30,7 +34,7 @@ export class Card {
         return itemTemplateContent;
     }
 
-    _toogleLike(evt) {
+    toogleLike(evt) {
         evt.target.classList.toggle('elements__btn_active');
     }
 
@@ -50,8 +54,7 @@ export class Card {
     _setEventListeners() {
         this._element.querySelector(".elements__btn").addEventListener('click', (evt) => {
             const like = !evt.target.classList.value.includes('elements__btn_active');
-            this._handleLikeClick(this, like)
-            this._toogleLike(evt);
+            this._handleLikeClick(this, like, evt);
         });
 
         this._element.querySelector(".elements__trash-icon").addEventListener('click', () => {
@@ -67,15 +70,15 @@ export class Card {
             }));
     }
 
-    getView = (counter, isLike, canEdit) => {
+    getView = () => {
         this._element = this._getTemplate();
         this._setEventListeners();
-        if (!canEdit) {
+        if (!this._canEdit) {
             this._element.querySelector(".elements__trash-icon").remove();
         }
         this._likeCounter = this._element.querySelector(".elements__counter");
-        this._likeCounter.textContent = counter;
-        if (isLike) {
+        this._likeCounter.textContent = this._counter;
+        if (this._isLike) {
             this._element.querySelector(".elements__btn").classList.toggle('elements__btn_active');
         }
         this._imageCard.alt = this._name;;

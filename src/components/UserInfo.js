@@ -19,8 +19,11 @@ export class UserInfo {
       return this._id;
   }
 
+  updateProfile(name, about){
+    this._handlerEditProfile(name, about);
+  }
+
   setUserInfo(name, about) {
-      this._handlerEditProfile(name, about);
       this._name.textContent = name;
       this._info.textContent = about;
   }
