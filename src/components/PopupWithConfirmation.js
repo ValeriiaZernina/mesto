@@ -1,21 +1,20 @@
 import Popup  from "./Popup";
 
 export class PopupWithConfirmation extends Popup {
-    constructor(popupSelector, handleFormSubmit) {
+    constructor(popupSelector, handleDeleteItem) {
         super(popupSelector);
-        this._handleFormSubmit = handleFormSubmit;
+        this._handleDeleteItem = handleDeleteItem;
 }
-
 setEventListeners() {
     super.setEventListeners();
-//     this._popup.addEventListener("submit", (evt) => {
-//         evt.preventDefault();
-//         this._handleFormSubmit(this._item);
-//     });
-}
+    this._popup.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        this._handleDeleteItem(this._item);
+    });
+ }
 
-openPopup() {
-    // this._item = item._id;
+openPopup(card) {
+    this._item = card;
     super.openPopup();
   }
 }

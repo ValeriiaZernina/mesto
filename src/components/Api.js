@@ -28,20 +28,25 @@ export class Api {
             .then((res) => this._checkResStatus(res));
     }
 
-    // deleteCard(id) {
-    //     return fetch(`https://mesto.${this._url}/cards/${id}`, {
-    //       method: "DELETE",
-    //       headers: this._headers,
-    //     }).then((res) => this._checkResStatus(res));
-    //   }
+    addNewCard(name, link) {
+        return fetch(`https://mesto.${this._url}/cards`, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link,
+        })
+    })
+            .then((res) => this._checkResStatus(res));  
+}
 
-    // changeLikeCardStatus(cardId, like) {
-    //     return fetch(`https://mesto.${this._url}/cards/${cardId}/likes`, {
-    //       method: like ? "PUT" : "DELETE"
-    //       headers: this._headers,
-    //     })
-    //     .then((res) => this._checkResStatus(res));
-    //   }
+    changeLikeCardStatus(id, like) {
+        return fetch(`https://mesto.${this._url}/cards/${id}/likes`, {
+          method: like ? "PUT" : "DELETE",
+          headers: this._headers,
+        })
+        .then((res) => this._checkResStatus(res));
+      }
 
     patchUser(name, about) {
         return fetch(`https://mesto.${this._url}/users/me`, {
@@ -66,4 +71,10 @@ export class Api {
         .then((res) => this._checkResStatus(res));
       }
 
+      deleteCard(id) {
+        return fetch(`https://mesto.${this._url}/cards/${id}`, {
+          method: "DELETE",
+          headers: this._headers,
+        }).then((res) => this._checkResStatus(res));
+      }
 }

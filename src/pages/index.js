@@ -38,35 +38,43 @@ const api = new Api({
     },
   });
 
-  api.getInitialUser()
-  .then((userData) => {
-      userInfo.setUserData(userData);
-  })
-  .catch((err) => alert(err))
+  let cardList = null;
 
-let cardList = null;
-  api.getInitialCards()
-  .then((cards) => {
-     cardList = new Section({
-            items: cards,
-            renderer: (item) => {
-                prependCard(item.name, item.link);
-            }
-        }, '.elements__cards');
-        
-        cardList.renderItems();
-  })
-  .catch((err) => alert(err));
+  Promise.all([api.getInitialUser(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserData(user);
 
+    cardList = new Section({
+        items: cards,
+        renderer: (item) => {
+            const canEdit = item.owner._id === userInfo.getId();
+            const isLike = item.likes.some(item => item._id=== userInfo.getId());
+            const counter = item.likes.length;
+            prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
+        }
+    }, '.elements__cards');
+    
+    cardList.renderItems();
+})
+ .catch((err) => alert(err));
 
-function createCard(name, link) {
-    const card = new Card(name, link, '.elements__template', handleCardClick, handleDeleteCardClick);
-    const cardElement = card.getView();
+function handleLikeClick(card, click) {
+    api.changeLikeCardStatus(card.getId(), click)
+    .then((result) => {
+        const counter = result.likes.length;
+        card.chengeLikeCounter(counter);
+    })
+    .catch((err) => alert(err))
+}
+
+function createCard(id, name, link, canEdit, counter, isLike) {
+    const card = new Card(id, name, link, '.elements__template', handleCardClick, handleDeleteCardClick, handleLikeClick);
+    const cardElement = card.getView(counter, isLike, canEdit);
     return cardElement;
 }
 
-function prependCard(name, link) {
-    const cardElement = createCard(name, link);
+function prependCard(id, name, link, canEdit, counter, isLike) {
+    const cardElement = createCard(id, name, link, canEdit, counter, isLike);
     cardList.addItem(cardElement);
 }
 
@@ -86,8 +94,18 @@ const popupDeleteCard = new PopupWithConfirmation('.popup_type_image-delete', ha
 popupDeleteCard.setEventListeners();
 
 function handleAddedFormSubmit(data) {
-    prependCard(data.InputPlace, data.InputLink);
-    popupAddedCard.closePopup();
+    popupAddedCard.renderLoading(true);
+    api
+    .addNewCard(data.InputPlace, data.InputLink)
+    .then((result) => {
+        prependCard(result._id, data.InputPlace, data.InputLink, true, 0, false);
+        popupAddedCard.closePopup();
+    })
+    .catch((err) => alert(err))
+    .finally(() => {
+        popupAddedCard.renderLoading(false)
+      });
+    
 }
 
 function handleProfileFormSubmit(data) {
@@ -109,12 +127,18 @@ function handleUpdateAvatar(data) {
       });
 }
 
-function handleDeleteCardClick() {
-    popupDeleteCard.openPopup();
+function handleDeleteCardClick(card) {
+    popupDeleteCard.openPopup(card);
 }
 
-function handleDeleteCard() {
-    popupDeleteCard.closePopup();
+function handleDeleteCard(card) {
+    api
+    .deleteCard(card.getId())
+    .then(() => {
+        card.remove();
+        popupDeleteCard.closePopup();
+    })
+    .catch((err) => alert(err))
 }
 
 function handlerEditProfile(name, about) {
@@ -131,11 +155,9 @@ function handlerEditProfile(name, about) {
 
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar', handlerEditProfile);
 
-
 function handleCardClick(item) {
     popupWithImage.openPopup(item)
 }
-
 
 const initFormAddedCard = new FormValidator(document.querySelector('.popup_type_profile-add .popup__form'), CONFIG);
 initFormAddedCard.enableValidation();
