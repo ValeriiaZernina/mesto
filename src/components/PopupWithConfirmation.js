@@ -7,7 +7,7 @@ export class PopupWithConfirmation extends Popup {
 }
 setEventListeners() {
     super.setEventListeners();
-    this._popup.addEventListener("click", (evt) => {
+    document.querySelector('.popup__btn-save-deleteImg').addEventListener("click", (evt) => {
         evt.preventDefault();
         this._handleDeleteItem(this._item);
     });
