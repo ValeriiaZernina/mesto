@@ -2,22 +2,22 @@ export class Card {
     _id;
     _name;
     _link;
-    _counter;
-    _isLike;
-    _canEdit;
+    _likes;
+    _ownerId;
+    _userId;
     _querySelectorTemplate;
     _element;
     _handleCardClick;
     _handleDeleteCardClick;
     _handleLikeClick;
    
-    constructor(id, name, link, counter, isLike, canEdit, querySelectorTemplate, handleCardClick, handleDeleteCardClick, handleLikeClick) {
+    constructor(id, name, link, likes, ownerId, userId, querySelectorTemplate, handleCardClick, handleDeleteCardClick, handleLikeClick) {
         this._id = id;
         this._name = name;
         this._link = link;
-        this._counter = counter;
-        this._isLike = isLike;
-        this._canEdit = canEdit;
+        this._likes = likes;
+        this._ownerId = ownerId;
+        this._userId = userId;
         this._querySelectorTemplate = querySelectorTemplate;
         this._handleCardClick = handleCardClick;
         this._handleDeleteCardClick = handleDeleteCardClick;
@@ -34,8 +34,16 @@ export class Card {
         return itemTemplateContent;
     }
 
-    toogleLike(evt) {
-        evt.target.classList.toggle('elements__btn_active');
+    _canEdit(){
+        return this._ownerId === this._userId;
+    }
+
+    _isLike(){
+        return this._likes.some(item => item._id === this._userId);
+    }
+
+    _getCounter(){
+        return this._likes.length;
     }
 
     getId() {
@@ -47,14 +55,13 @@ export class Card {
         this._element = null;
     }
 
-    chengeLikeCounter(counter) {
-        this._likeCounter.textContent = counter;
+    setLikes(likes) {
+        this._likes = likes;
     }
 
     _setEventListeners() {
-        this._element.querySelector(".elements__btn").addEventListener('click', (evt) => {
-            const like = !evt.target.classList.value.includes('elements__btn_active');
-            this._handleLikeClick(this, like, evt);
+        this._element.querySelector(".elements__btn").addEventListener('click', () => {
+            this._handleLikeClick(this, !this._isLike());
         });
 
         this._element.querySelector(".elements__trash-icon").addEventListener('click', () => {
@@ -70,17 +77,25 @@ export class Card {
             }));
     }
 
+
+    viewLikes = () => {
+        this._likeCounter = this._element.querySelector(".elements__counter");
+        this._likeCounter.textContent = this._getCounter();
+        if (this._isLike()) {
+            this._element.querySelector(".elements__btn").classList.add('elements__btn_active');
+        }
+        else{
+            this._element.querySelector(".elements__btn").classList.remove('elements__btn_active');
+        }
+    }
+
     getView = () => {
         this._element = this._getTemplate();
         this._setEventListeners();
-        if (!this._canEdit) {
+        if (!this._canEdit()) {
             this._element.querySelector(".elements__trash-icon").remove();
         }
-        this._likeCounter = this._element.querySelector(".elements__counter");
-        this._likeCounter.textContent = this._counter;
-        if (this._isLike) {
-            this._element.querySelector(".elements__btn").classList.toggle('elements__btn_active');
-        }
+        this.viewLikes();
         this._imageCard.alt = this._name;;
         this._imageCard.src = this._link;
         this._element.querySelector(".elements__location").textContent = this._name;
