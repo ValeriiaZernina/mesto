@@ -40,10 +40,7 @@ const api = new Api({
 
 const cardList = new Section({
     renderer: (item) => {
-        const canEdit = item.owner._id === userInfo.getId();
-        const isLike = item.likes.some(item => item._id === userInfo.getId());
-        const counter = item.likes.length;
-        prependCard(item._id, item.name, item.link, canEdit, counter, isLike);
+        prependCard(item._id, item.name, item.link, item.likes, item.owner._id, userInfo.getId());
     }
 }, '.elements__cards');
 
@@ -54,24 +51,23 @@ Promise.all([api.getInitialUser(), api.getInitialCards()])
     })
     .catch((err) => alert(err));
 
-function handleLikeClick(card, click, evt) {
+function handleLikeClick(card, click) {
     api.changeLikeCardStatus(card.getId(), click)
         .then((result) => {
-            const counter = result.likes.length;
-            card.chengeLikeCounter(counter);
-            card.toogleLike(evt);
+            card.setLikes(result.likes);
+            card.viewLikes();
         })
         .catch((err) => alert(err))
 }
 
-function createCard(id, name, link, canEdit, counter, isLike) {
-    const card = new Card(id, name, link, counter, isLike, canEdit, '.elements__template', handleCardClick, handleDeleteCardClick, handleLikeClick);
+function createCard(id, name, link, likes, ownerId, userId) {
+    const card = new Card(id, name, link, likes, ownerId, userId, '.elements__template', handleCardClick, handleDeleteCardClick, handleLikeClick);
     const cardElement = card.getView();
     return cardElement;
 }
 
-function prependCard(id, name, link, canEdit, counter, isLike) {
-    const cardElement = createCard(id, name, link, canEdit, counter, isLike);
+function prependCard(id, name, link, likes, ownerId, userId) {
+    const cardElement = createCard(id, name, link, likes, ownerId, userId);
     cardList.addItem(cardElement);
 }
 
@@ -94,8 +90,8 @@ function handleAddedFormSubmit(data) {
     popupAddedCard.renderLoading(true);
     api
         .addNewCard(data.InputPlace, data.InputLink)
-        .then((result) => {
-            prependCard(result._id, data.InputPlace, data.InputLink, true, 0, false);
+        .then((item) => {
+            prependCard(item._id, item.name, item.link, item.likes, item.owner._id, userInfo.getId());
             popupAddedCard.closePopup();
         })
         .catch((err) => alert(err))
